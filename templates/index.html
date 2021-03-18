@@ -1,0 +1,193 @@
+<!DOCTYPE HTML>
+
+<html>
+	<head>
+		<title>akiraServerManager</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}" />
+		<noscript><link rel="stylesheet" href="{{ url_for('static', filename='assets/css/noscript.css') }}" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+				
+				
+				{%- with messages = get_flashed_messages() %}
+					{% if messages %}
+						{% for message in messages %}
+							<script>
+							alert('{{ message }}');
+							</script>
+						{% endfor %}
+					{% endif %}
+				{% endwith -%}
+				
+				<!-- Header -->
+					<header id="header" class="alt">
+						<h1>akiraServerManager</h1>
+						<p>A software to manage your servers.<br/>
+						dev by <a href="https://github.com/akira-trinity">akira</a></p>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="#list" class="active">Servers list</a></li>
+							<li><a href="#manage">Manage</a></li>
+							<li><a href="#help">Help</a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Introduction -->
+							<section id="list" class="main special">
+								<header class="major">
+									<h2>Servers list</h2>
+								</header>
+								
+							
+								{% if headers %}
+								<table>
+									<thead>
+									  <tr>
+									  {% for header in headers %}
+										<th>{{header}}</th>
+									  {% endfor %}
+									  </tr>
+									</thead>
+
+									<tbody>
+									{% for object in objects %} 
+									  <tr>
+										{% for k, val in object.items() %}
+											{% if(val == "Up") %}
+												<td align="left"><img src="static/images/up.png" width="16" height="16"> {{val}}</img></td>
+											{% elif(val == "Down") %}
+												<td align="left"><img src="static/images/down.png" width="18" height="16"> {{val}}</img></td>
+											{% else %}
+												<td align="left">{{val}}</td>
+											{% endif %}
+										{% endfor %}
+									  </tr>
+									{% endfor %}        
+									</tbody>
+								</table>
+								{% endif %}
+
+							</section>
+
+						<!-- First Section -->
+							<section id="manage" class="main special">
+								<header class="major">
+									<h2>Manage</h2>
+								</header>
+								
+								<ul class="features">
+								
+									<li>
+										<form action="/backend/addServer" method="post">
+											<input type="text" name="name" placeholder="Name" required>
+											</br>
+											<input type="text" name="type" placeholder="Type [File transfer/Chat]" required>
+											</br>
+											<input type="text" name="port" placeholder="Port" required>
+											</br>
+											<input type="submit" value="Add a server">
+										</form>	
+									</li>
+									<li>
+										<form action="/backend/deleteServer" method="post">
+											<input type="text" name="name" placeholder="Name" required>
+											</br>
+											<input type="text" name="type" placeholder="Type [File transfer/Chat]" required>
+											</br>
+											<input type="text" name="port" placeholder="Port" required>
+											</br>
+											<input type="submit" value="Delete a server">
+										</form>
+									</li>
+								</ul>
+								<ul class="features">
+									<li>
+										<form action="/backend/startServer" method="post">
+											<input type="text" name="name" placeholder="Name" required>
+											</br>
+											<input type="text" name="type" placeholder="Type [File transfer/Chat]" required>
+											</br>
+											<input type="text" name="port" placeholder="Port" required>
+											</br>
+											<input type="submit" value="Start server">
+										</form>
+									</li>
+									<li>
+										<form action="/backend/stopServer" method="post">
+											<input type="text" name="name" placeholder="Name" required>
+											</br>
+											<input type="text" name="type" placeholder="Type [File transfer/Chat]" required>
+											</br>
+											<input type="text" name="port" placeholder="Port" required>
+											</br>
+											<input type="submit" value="Stop server">
+										</form>
+									</li>
+								</ul>
+								<ul class="features">
+									<li>
+										<form action="/backend/stopAllServers" method="post">
+											<input type="submit" value="Stop all servers">
+										</form>						
+								</ul>
+								
+							</section>
+
+						<!-- Second Section -->
+							<section id="help" class="main special">
+								<header class="major">
+									<h2>Help</h2>
+								</header>
+								<div class="content">
+										<header class="major">
+											<h3>Error of server:</h3>
+										</header>
+										<p>If you can't join a server with the client, try to see if he's up by running the following command (Linux):</p>
+										<p>sudo lsof -i -P -n</p>
+										<p>If the server is not up, try to shutdown it then restart akiraServerManager.</p>
+										<p>Same if the port is used or something else.</p>
+								<footer class="major">
+									<ul class="actions special">
+										<li><a href="https://github.com/akira-trinity/akiraServerManager/issues/new" class="button">Report an issue</a></li>
+									</ul>
+								</footer>
+								</div>
+							</section>
+					</div>
+			
+
+				<!-- Footer -->
+					<footer id="footer" class="major">
+						<section>
+							<h2>:)</h2>
+							<p>Thanks you for downloading and using akiraServerManager. Hope you will share my Github and start my repositories !</p>
+						</section>
+					</footer>
+
+			</div>
+		
+		</div>
+
+
+		<!-- Scripts -->
+			<script src="/static/assets/js/jquery.min.js"></script>
+			<script src="/static/assets/js/jquery.scrollex.min.js"></script>
+			<script src="/static/assets/js/jquery.scrolly.min.js"></script>
+			<script src="/static/assets/js/browser.min.js"></script>
+			<script src="/static/assets/js/breakpoints.min.js"></script>
+			<script src="/static/assets/js/util.js"></script>
+			<script src="/static/assets/js/main.js"></script>
+
+	</body>
+</html>
