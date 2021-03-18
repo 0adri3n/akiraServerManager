@@ -11,6 +11,7 @@ import multiprocessing
 app = Flask(__name__)
 app.secret_key = "supersecretkey"
 
+
 all_processes = []
 
 def createTableData():
