@@ -37,7 +37,7 @@ class listening_serv(Thread) :
                 self.clients.remove(client)
                 self.client.close()
                 nickname = nicknames[index]
-                broadcast('{} left!'.format(nickname).encode('ascii'))
+                self.broadcast('{} left!'.format(nickname).encode('ascii'))
                 self.nicknames.remove(nickname)
                 break
         
