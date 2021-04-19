@@ -13,7 +13,7 @@ pip install flask
 4. Open your browser and go to http://localhost:5000
 5. Share the clients to persons you want to chat with or transfer files.
 * (Tip: If someone is outside of your local network, create a [ngrok](https://ngrok.com/) tunnel to let him access to a port.
-7. Ready to use !
+6. Ready to use !
 
 #
 
