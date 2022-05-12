@@ -1,7 +1,7 @@
 # akiraServerManager
 <p align="center">A software to manage basic servers like chat or file transfer server.</p>
 
-# Using
+# Setup
 
 
 1. Download the repository.
